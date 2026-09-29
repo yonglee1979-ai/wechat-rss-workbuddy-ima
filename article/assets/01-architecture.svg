@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0A2239" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#0E8F89"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="760" fill="#F7F5F0"/>
+  <text x="90" y="78" fill="#0A2239" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="38" font-weight="700">一条自动化知识流水线</text>
+  <text x="90" y="120" fill="#526273" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="20">公众号文章从“被动刷到”变成“按天沉淀、可检索、可追溯”的知识资产</text>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="200" width="340" height="300" rx="26" fill="#FFFFFF"/>
+    <rect x="530" y="200" width="340" height="300" rx="26" fill="#FFFFFF"/>
+    <rect x="970" y="200" width="340" height="300" rx="26" fill="#FFFFFF"/>
+  </g>
+
+  <rect x="90" y="200" width="340" height="10" rx="5" fill="#EE6C4D"/>
+  <rect x="530" y="200" width="340" height="10" rx="5" fill="#0E8F89"/>
+  <rect x="970" y="200" width="340" height="10" rx="5" fill="#F2A93B"/>
+
+  <circle cx="150" cy="270" r="30" fill="#FDE9E4"/>
+  <path d="M135 264h30M135 276h22" stroke="#EE6C4D" stroke-width="6" stroke-linecap="round"/>
+  <text x="200" y="268" fill="#0A2239" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="26" font-weight="700">WeChatRSS</text>
+  <text x="130" y="328" fill="#0A2239" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="22" font-weight="600">订阅与供给</text>
+  <text x="130" y="370" fill="#526273" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="18">公众号文章 → 合并 RSS Feed</text>
+  <text x="130" y="405" fill="#526273" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="18">每条记录带文章 URL、作者等字段</text>
+  <rect x="130" y="442" width="150" height="34" rx="17" fill="#FDE9E4"/>
+  <text x="205" y="466" text-anchor="middle" fill="#B64E3B" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="600">输入：RSS / URL</text>
+
+  <circle cx="590" cy="270" r="30" fill="#DFF4F1"/>
+  <circle cx="590" cy="270" r="13" fill="none" stroke="#0E8F89" stroke-width="5"/>
+  <path d="M590 247v-9M590 302v-9M567 270h-9M622 270h-9" stroke="#0E8F89" stroke-width="5" stroke-linecap="round"/>
+  <text x="640" y="268" fill="#0A2239" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="26" font-weight="700">WorkBuddy</text>
+  <text x="570" y="328" fill="#0A2239" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="22" font-weight="600">调度与执行</text>
+  <text x="570" y="370" fill="#526273" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="18">按日历触发本地自动化任务</text>
+  <text x="570" y="405" fill="#526273" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="18">运行 Python 脚本，调用 IMA API</text>
+  <rect x="570" y="442" width="190" height="34" rx="17" fill="#DFF4F1"/>
+  <text x="665" y="466" text-anchor="middle" fill="#0B6E69" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="600">中枢：定时 + 本地权限</text>
+
+  <circle cx="1030" cy="270" r="30" fill="#FFF0D6"/>
+  <path d="M1016 270h28M1030 256v28" stroke="#D88917" stroke-width="6" stroke-linecap="round"/>
+  <text x="1080" y="268" fill="#0A2239" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="26" font-weight="700">IMA 知识库</text>
+  <text x="1010" y="328" fill="#0A2239" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="22" font-weight="600">入库与检索</text>
+  <text x="1010" y="370" fill="#526273" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="18">OpenAPI 自动抓取文章全文</text>
+  <text x="1010" y="405" fill="#526273" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="18">按知识库分别去重，保留入库记录</text>
+  <rect x="1010" y="442" width="178" height="34" rx="17" fill="#FFF0D6"/>
+  <text x="1099" y="466" text-anchor="middle" fill="#A4650E" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="600">结果：知识资产</text>
+
+  <path d="M445 350H505" stroke="#0E8F89" stroke-width="6" marker-end="url(#arrow)"/>
+  <path d="M885 350H945" stroke="#0E8F89" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <rect x="90" y="590" width="1220" height="86" rx="18" fill="#0A2239"/>
+  <text x="130" y="628" fill="#FFFFFF" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="19" font-weight="700">核心原则</text>
+  <text x="275" y="628" fill="#DDE8EF" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="18">凭证只放本机配置目录；增量判定只看 URL；只有 IMA 返回成功才写入去重文件。</text>
+  <text x="275" y="658" fill="#9CC9C4" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif" font-size="16">这样脚本可重复运行，失败可重试，状态可追踪。</text>
+</svg>

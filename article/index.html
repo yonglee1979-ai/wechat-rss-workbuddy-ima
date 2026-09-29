@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>把公众号更新自动沉淀进 IMA：WorkBuddy × WeChatRSS 的每日知识库流水线</title>
+  <style>
+    :root{--ink:#0a2239;--muted:#526273;--teal:#0e8f89;--teal-bg:#dff4f1;--amber:#d88917;--amber-bg:#fff0d6;--coral:#b64e3b;--coral-bg:#fde9e4;--paper:#f7f5f0;--white:#fff}
+    *{box-sizing:border-box} body{margin:0;background:#e9edf0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.85}
+    .page{max-width:930px;margin:0 auto;background:var(--white);min-height:100vh}
+    .hero{position:relative;overflow:hidden;background:var(--paper);padding:62px 70px 72px;min-height:430px}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+    .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,245,240,.97) 0%,rgba(247,245,240,.88) 46%,rgba(247,245,240,.18) 100%)}
+    .hero-content{position:relative;z-index:1;max-width:520px}.eyebrow{display:inline-block;padding:6px 14px;border-radius:18px;background:var(--teal-bg);color:#0b6e69;font-weight:700;font-size:14px;letter-spacing:.08em}
+    h1{font-size:42px;line-height:1.25;margin:22px 0 18px;letter-spacing:-.03em}.dek{font-size:20px;color:var(--muted);line-height:1.7;margin:0}.meta{margin-top:28px;color:#71808c;font-size:14px}
+    main{padding:54px 70px 90px} h2{font-size:30px;line-height:1.35;margin:58px 0 18px;padding-left:18px;border-left:6px solid var(--teal)} h3{font-size:22px;margin:32px 0 10px} p{font-size:17px;margin:14px 0;color:#22384b} strong{color:var(--ink)}
+    .lead{font-size:21px;line-height:1.85;color:var(--ink);font-weight:600}.callout{background:var(--ink);color:#fff;border-radius:16px;padding:22px 26px;margin:28px 0}.callout p{color:#e7eff3;margin:0}.callout strong{color:#9cc9c4}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.card{border:1px solid #e3e9ec;border-radius:14px;padding:18px;background:#fff}.card .tag{font-size:13px;font-weight:700;color:var(--teal);letter-spacing:.08em}.card h3{font-size:20px;margin:8px 0}.card p{font-size:15px;margin:0;color:var(--muted)}
+    figure{margin:30px 0 34px} figure img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 12px 30px rgba(10,34,57,.1)}figcaption{font-size:13px;text-align:center;color:#7d8992;margin-top:10px}
+    table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}th,td{padding:13px 14px;border-bottom:1px solid #e6ecef;text-align:left;vertical-align:top}th{background:#f2f6f7;color:var(--ink)}
+    pre{white-space:pre-wrap;overflow:auto;background:#102d44;color:#e8f0f3;border-radius:14px;padding:18px 20px;font-size:14px;line-height:1.7}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}p code,li code,td code{padding:2px 6px;border-radius:5px;background:#eef3f4;color:#0b6e69;font-size:.92em}
+    ul,ol{padding-left:26px;color:#22384b;font-size:17px}li{margin:7px 0}.notice{padding:18px 22px;border-radius:12px;background:var(--amber-bg);color:#70490f;margin:24px 0}.notice strong{color:#8b5e10}
+    .source{border-top:1px solid #e5eaed;margin-top:58px;padding-top:25px;font-size:14px;color:#71808c}.source a{color:var(--teal);text-decoration:none}.footer{text-align:center;background:var(--ink);color:#dbe7ec;padding:24px;font-size:13px}
+    @media(max-width:700px){.hero{padding:40px 24px 50px;min-height:460px}.hero img{opacity:.66}.hero:after{background:linear-gradient(90deg,rgba(247,245,240,.97) 0%,rgba(247,245,240,.72) 100%)}h1{font-size:34px}.dek{font-size:18px}main{padding:36px 24px 60px}h2{font-size:27px}.grid{grid-template-columns:1fr}p,li,ul,ol{font-size:16px}.lead{font-size:19px}table{font-size:14px;display:block;overflow:auto;white-space:nowrap}}
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="hero">
+      <img src="assets/00-cover-illustration.png" alt="信息流进入知识库的自动化插画">
+      <div class="hero-content">
+        <span class="eyebrow">WORKFLOW · PRACTICE</span>
+        <h1>把公众号更新自动沉淀进 IMA：<br>WorkBuddy × WeChatRSS</h1>
+        <p class="dek">一次配置，每天自动拉取订阅的公众号文章；只把新增内容写入指定的 IMA 知识库。</p>
+        <p class="meta">一套可复用的 RSS → 增量去重 → IMA 入库实践</p>
+      </div>
+    </header>
+    <main>
+      <p class="lead">关注了几十个公众号，真正需要查资料时却总在微信里翻记录？这套方案把公众号文章变成一条可重复运行的知识流水线：WeChatRSS 负责供给，WorkBuddy 负责定时执行，IMA 负责入库和检索。</p>
+      <div class="callout"><p><strong>核心逻辑：</strong>有新文章就入库，没有新文章就结束；中途失败可以重试，已经成功的文章不会重复导入。</p></div>
+
+      <h2>一、三个工具各做什么</h2>
+      <div class="grid">
+        <div class="card"><div class="tag">01 · SOURCE</div><h3>WeChatRSS</h3><p>订阅公众号，提供“全部订阅”合并 RSS 和文章 URL。</p></div>
+        <div class="card"><div class="tag">02 · ORCHESTRATE</div><h3>WorkBuddy</h3><p>按时间触发本地脚本，连接 RSS、去重状态和 IMA API。</p></div>
+        <div class="card"><div class="tag">03 · DESTINATION</div><h3>IMA</h3><p>自动抓取文章全文，沉淀为可检索的知识库内容。</p></div>
+      </div>
+      <figure><img src="assets/01-architecture.png" alt="WeChatRSS、WorkBuddy、IMA 三层架构图"><figcaption>图 1｜一条自动化知识流水线</figcaption></figure>
+
+      <h2>二、开始前要准备什么</h2>
+      <ul>
+        <li>一台可以联网的电脑，以及 <code>python3</code>、<code>node</code>。</li>
+        <li>能够访问本机脚本与配置文件的 WorkBuddy 本地工作空间。</li>
+        <li>IMA OpenAPI skill、WeChatRSS JWT token、IMA 的 <code>client_id</code> 和 <code>api_key</code>。</li>
+      </ul>
+      <div class="notice"><strong>安全底线：</strong>token、client_id、api_key 只放本机环境变量或 <code>~/.config/ima/</code>，不要写进文章、截图、提示词或运行日志。</div>
+
+      <h2>三、在 WeChatRSS 建立文章入口</h2>
+      <p>访问 <a href="https://wechatrss.waytomaster.com/">WeChatRSS 官网</a>。先在微信里关注目标公众号，再完成客户端同步。官网当前展示为“2 个公众号免费、付费 ¥9.9/月起”，价格和套餐以页面实际信息为准。</p>
+      <p>获取“全部订阅”合并 feed：</p>
+      <pre><code>https://wechatrss.waytomaster.com/api/rss/all?token=&lt;你的 WECHATRSS_TOKEN&gt;</code></pre>
+      <p>在本机测试时使用环境变量：</p>
+      <pre><code>export WECHATRSS_TOKEN="&lt;完整 JWT&gt;"
+curl -sL "https://wechatrss.waytomaster.com/api/rss/all?token=$WECHATRSS_TOKEN" -o /tmp/rss_all.xml</code></pre>
+      <p>如果 feed 为空或返回 401，先检查 token、微信客户端同步状态和公众号关注关系。</p>
+
+      <h2>四、配置 IMA OpenAPI</h2>
+      <h3>1. 凭证放在本机配置目录</h3>
+      <pre><code>mkdir -p ~/.config/ima
+printf '%s' '&lt;Client ID&gt;' &gt; ~/.config/ima/client_id
+printf '%s' '&lt;API Key&gt;'  &gt; ~/.config/ima/api_key</code></pre>
+      <h3>2. 找到 OpenAPI 侧的 kb_id</h3>
+      <p>不要直接使用移动端或桌面端看到的知识库 ID。按名称搜索，取返回结果中的 <code>data.info_list[].kb_id</code>：</p>
+      <pre><code>node &lt;ima-skill 目录&gt;/ima_api.cjs "openapi/wiki/v1/search_knowledge_base" \
+  '{"query":"&lt;知识库名称&gt;","cursor":"","limit":20}'</code></pre>
+      <p>多个知识库要分别配置自己的 OpenAPI <code>kb_id</code> 和去重文件。</p>
+
+      <h2>五、用脚本做增量同步</h2>
+      <p>脚本只做五件事：拉 RSS、解析文章、按知识库去重、每批最多 10 条调用 <code>import_urls</code>、成功后记录状态。示例脚本在素材包的 <code>scripts/wechatrss_to_ima_example.py</code>。</p>
+      <pre><code>KBS = [
+    {
+        "name": "知识库 A",
+        "kb_openapi": "&lt;OPENAPI_KB_ID&gt;",
+        "dedup": STATE_DIR / "kb-a.json",
+    },
+]</code></pre>
+      <p>建议每个知识库维护独立的 JSON 状态文件。这样知识库 A 入库后，不会误跳过知识库 B。</p>
+      <figure><img src="assets/02-daily-flow.png" alt="每日同步六步流程图"><figcaption>图 2｜每天自动同步时，脚本实际执行的六个步骤</figcaption></figure>
+
+      <h2>六、在 WorkBuddy 中创建每日自动化</h2>
+      <p>WorkBuddy 的自动化任务通常需要填写任务名称、提示词、工作空间、权限模式和定时规则。不同版本入口名称可能略有变化，但关键是：<strong>选择能访问脚本与本机凭证的本地工作空间。</strong></p>
+      <figure><img src="assets/03-workbuddy-settings.png" alt="WorkBuddy 自动化任务配置示意图"><figcaption>图 3｜WorkBuddy 配置示意，非真实产品截图</figcaption></figure>
+      <table><tr><th>配置项</th><th>建议填写</th></tr><tr><td>任务名称</td><td>每日公众号文章 → IMA 知识库</td></tr><tr><td>工作空间</td><td>选择脚本所在的本地文件夹</td></tr><tr><td>执行频率</td><td>每天一次，例如 08:30</td></tr><tr><td>首次运行</td><td>先手动测试，再打开每日调度</td></tr></table>
+      <p>可直接使用的提示词：</p>
+      <pre><code>每天 08:30，在当前本地工作空间执行公众号文章入库任务：
+1. 检查 python3、node、IMA_API_CJS 和脚本是否可用；
+2. 使用环境变量 WECHATRSS_TOKEN 拉取合并 RSS；
+3. 运行 python3 wechatrss_to_ima.py；
+4. 只汇报新增、成功、失败数量和错误码；
+5. 禁止输出 token、client_id、api_key、完整 feed URL 或文章正文；
+6. 不要删除去重状态文件，不要重复导入已经成功的 URL。</code></pre>
+      <p>测试成功后，应看到“新增候选、成功入库、失败”的统计；没有新文章时，0 条新增是正常结果。</p>
+
+      <h2>七、四层验收：不要只看“任务已完成”</h2>
+      <ol>
+        <li><strong>供给层：</strong>RSS 可以拉取，XML 中有文章 URL。</li>
+        <li><strong>增量层：</strong>第一次有新增，立刻重跑后新增应为 0。</li>
+        <li><strong>接口层：</strong>顶层 <code>code=0</code>，每条 <code>ret_code=0</code>，并能拿到 <code>media_id</code>。</li>
+        <li><strong>结果层：</strong>在 IMA 知识库里搜索标题或关键词，确认文章真的出现。</li>
+      </ol>
+      <p>只有第四层通过，才算“执行成功并送达”。</p>
+
+      <h2>八、常见报错与排查</h2>
+      <figure><img src="assets/04-troubleshooting.png" alt="四个常见故障与排查方法"><figcaption>图 4｜按层定位问题，不要盲目重复运行</figcaption></figure>
+      <table><tr><th>现象</th><th>优先处理</th></tr><tr><td>feed 为空 / 401</td><td>刷新 token，检查微信客户端同步和关注关系。</td></tr><tr><td>220004 invalid knowledge_base_id</td><td>用 <code>search_knowledge_base</code> 获取 OpenAPI <code>kb_id</code>。</td></tr><tr><td>222000 文件夹不存在</td><td>检查 <code>folder_id</code>；按当前 skill 文档确认根目录参数。</td></tr><tr><td>任务完成但没有入库</td><td>同时看 <code>code</code>、每条 <code>ret_code</code>、去重文件和 IMA 实际检索结果。</td></tr></table>
+
+      <h2>九、为什么它可以反复运行</h2>
+      <p><strong>按 URL 去重：</strong>同一篇文章通常对应同一个公众号文章 URL。</p>
+      <p><strong>按知识库隔离状态：</strong>同一篇文章可以分别进入不同知识库。</p>
+      <p><strong>成功后再写状态：</strong>IMA 失败的文章不会被误标为已入库，下一次可以自然重试。</p>
+      <div class="callout"><p><strong>最小可用闭环：</strong>先订阅 1～2 个公众号，手动测试一次，确认 IMA 可以检索到文章，再把频率放大到每天。</p></div>
+
+      <div class="source"><strong>参考入口：</strong><br>
+        <a href="https://wechatrss.waytomaster.com/">WeChatRSS 官网</a> ·
+        <a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Automation-Guide">WorkBuddy 自动化文档</a> ·
+        <a href="https://cloud.tencent.com/product/workbuddy">腾讯云 WorkBuddy 产品介绍</a> ·
+        <a href="https://ima.qq.com">IMA 官网</a>
+      </div>
+    </main>
+    <footer class="footer">图文预览版 · 公众号发布前请替换占位符并再次核对当前产品界面</footer>
+  </article>
+</body>
+</html>
